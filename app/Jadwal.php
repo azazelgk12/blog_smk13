@@ -8,6 +8,9 @@ class Jadwal extends Model
 {
    
 	protected $table = 'jadwal_mobil_unit'; 
+
+	protected $fillable = ['tanggal','waktu','id_kdd','id_tempat','target','alamat'];
+	public $timestamps = true;
    public function Kdd() 
    {
 

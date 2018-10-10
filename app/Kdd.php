@@ -7,7 +7,7 @@ use Eloquent;
 class Kdd extends Model
 {
 
-	protected $table = 'Kdd' ;
+	protected $table = 'kdd' ;
 
 	
     public function Jadwal()

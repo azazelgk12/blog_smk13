@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : local_mysql
  Source Server Type    : MySQL
  Source Server Version : 100132
- Source Host           : 127.0.0.1:3306
+ Source Host           : localhost:3306
  Source Schema         : pmi_4
 
  Target Server Type    : MySQL
  Target Server Version : 100132
  File Encoding         : 65001
 
- Date: 08/10/2018 20:22:40
+ Date: 10/10/2018 13:00:16
 */
 
 SET NAMES utf8mb4;
@@ -25,7 +25,7 @@ CREATE TABLE `admin`  (
   `id` int(10) NOT NULL,
   `nama` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `username` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `password` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `Password` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `foto` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE
@@ -34,7 +34,7 @@ CREATE TABLE `admin`  (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (0, 'tri', 'tri', 'tri', '');
+INSERT INTO `admin` VALUES (1, 'admin', 'admin', 'admin', '');
 
 -- ----------------------------
 -- Table structure for agenda
@@ -63,12 +63,12 @@ CREATE TABLE `informasi`  (
   `judul_info` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `deskripsi` varchar(2550) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `foto` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `id_adm` int(10) NOT NULL,
+  `id_admin` int(10) NOT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id_info`) USING BTREE,
-  INDEX `id_adm`(`id_adm`) USING BTREE,
-  CONSTRAINT `informasi_ibfk_1` FOREIGN KEY (`id_adm`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  INDEX `id_adm`(`id_admin`) USING BTREE,
+  CONSTRAINT `informasi_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
@@ -78,24 +78,25 @@ DROP TABLE IF EXISTS `jadwal_mobil_unit`;
 CREATE TABLE `jadwal_mobil_unit`  (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `tanggal` date NOT NULL,
-  `waktu` time(0) NOT NULL,
+  `waktu` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `id_kdd` int(10) NOT NULL,
   `alamat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `id_tempat` int(10) NOT NULL,
   `target` int(10) NOT NULL,
-  `created_at` datetime(0) NOT NULL,
-  `update_at` datetime(0) NOT NULL,
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `a`(`id_kdd`) USING BTREE,
   INDEX `b`(`id_tempat`) USING BTREE,
   CONSTRAINT `a` FOREIGN KEY (`id_kdd`) REFERENCES `kdd` (`id_kdd`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `b` FOREIGN KEY (`id_tempat`) REFERENCES `tempat` (`id_tempat`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of jadwal_mobil_unit
 -- ----------------------------
-INSERT INTO `jadwal_mobil_unit` VALUES (11, '2018-09-13', '10:33:18', 0, 'jalan caringin', 0, 90, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `jadwal_mobil_unit` VALUES (4, '2018-10-04', '09:00', 0, 'jl caringin', 0, 90, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `jadwal_mobil_unit` VALUES (13, '2018-10-10', '00:12', 0, 'ksdjfksj', 0, 134, '2018-10-10 12:59:00', '2018-10-10 05:59:00');
 
 -- ----------------------------
 -- Table structure for kdd
@@ -110,7 +111,7 @@ CREATE TABLE `kdd`  (
 -- ----------------------------
 -- Records of kdd
 -- ----------------------------
-INSERT INTO `kdd` VALUES (0, 'yogya');
+INSERT INTO `kdd` VALUES (0, 'borma');
 
 -- ----------------------------
 -- Table structure for kontak
@@ -147,30 +148,30 @@ CREATE TABLE `stok_darah`  (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `golongandarah` enum('A','B','AB','O') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `rhesus` enum('-','+') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `wb` int(10) NOT NULL,
+  `tc` int(10) NOT NULL,
+  `prc` int(10) NOT NULL,
+  `ahf` int(10) NOT NULL,
+  `ffp` int(10) NOT NULL,
+  `bc` int(10) NOT NULL,
+  `lp` int(10) NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `wb` int(11) NOT NULL,
-  `tc` int(11) NOT NULL,
-  `prc` int(11) NOT NULL,
-  `ffp` int(11) NOT NULL,
-  `ahf` int(11) NOT NULL,
-  `bc` int(11) NOT NULL,
-  `lp` int(11) NOT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of stok_darah
 -- ----------------------------
-INSERT INTO `stok_darah` VALUES (1, 'A', '+', 0, 7, 4, 0, 1, 1, 1, 1, NULL, '2018-09-24 03:08:18');
-INSERT INTO `stok_darah` VALUES (2, 'B', '+', 0, 101, 9, 0, 0, 0, 0, 0, NULL, '2018-10-01 01:52:16');
-INSERT INTO `stok_darah` VALUES (11, 'AB', '+', 9, 8, 0, 0, 0, 0, 0, 0, NULL, '2018-09-24 02:07:34');
-INSERT INTO `stok_darah` VALUES (12, 'O', '+', 2, 9, 3, 3, 3, 3, 3, 3, NULL, '2018-10-01 12:31:35');
-INSERT INTO `stok_darah` VALUES (13, 'A', '-', 8, 0, 0, 0, 0, 0, 0, 0, NULL, '2018-09-23 00:20:44');
-INSERT INTO `stok_darah` VALUES (14, 'B', '-', 7, 0, 0, 0, 0, 0, 0, 0, NULL, '2018-09-23 00:20:58');
-INSERT INTO `stok_darah` VALUES (15, 'AB', '-', 7, 0, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '2018-09-23 02:08:25');
-INSERT INTO `stok_darah` VALUES (16, 'O', '-', 7, 8, 3, 3, 3, 3, 3, 0, NULL, '2018-10-01 12:31:52');
+INSERT INTO `stok_darah` VALUES (1, 'A', '+', 1, 1, 1, 1, 1, 1, 1, 1, NULL, NULL);
+INSERT INTO `stok_darah` VALUES (2, 'B', '+', 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO `stok_darah` VALUES (3, 'AB', '+', 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO `stok_darah` VALUES (4, 'O', '+', 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO `stok_darah` VALUES (5, 'A', '-', 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO `stok_darah` VALUES (6, 'B', '-', 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO `stok_darah` VALUES (7, 'AB', '-', 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
+INSERT INTO `stok_darah` VALUES (8, 'O', '-', 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tempat
@@ -185,6 +186,6 @@ CREATE TABLE `tempat`  (
 -- ----------------------------
 -- Records of tempat
 -- ----------------------------
-INSERT INTO `tempat` VALUES (0, 'gedungsate');
+INSERT INTO `tempat` VALUES (0, 'pasar');
 
 SET FOREIGN_KEY_CHECKS = 1;

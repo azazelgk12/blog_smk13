@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 // use Illuminate\Http\Request;
 use Session;
 use Validator;
+use App\Admin;
 
 class LoginController extends Controller
 {
@@ -70,10 +71,10 @@ class LoginController extends Controller
             }
          else
          	{
-         		$req = DB::table('admin')
-                     ->select(DB::raw('count(*) as username, status'))
-                     ->where([['username','=',$username],['password','=',$pass]])
-                     ->count();
+                 	
+            
+           $req = Admin::where(['username'=>$username,'password'=>$pass])->count();
+           
          		if($req == 1)
 	        		{
 	        			Session::put('username', $username);
@@ -81,7 +82,7 @@ class LoginController extends Controller
 	        		}
 	        	else
 	    			{
-	    				return redirect('/login')->with('msg','username dan password salah');
+	    				return redirect('/')->with('msg','username dan password salah');
 	    			}
          	}	
 

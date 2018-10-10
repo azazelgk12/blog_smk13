@@ -24,7 +24,7 @@
     <!-- JQVMap -->
     <link href="{{URL::asset('vendors/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
-    <link href="{{URL::asset('vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+   
 
 
     <!-- Font Awesome -->
@@ -32,9 +32,7 @@
     <!-- NProgress -->
 
     
-    <link href="{{URL::asset('build/css/fullcalendar/fullcalendar/dist/fullcalendar.min.css')}}" rel="stylesheet">
-    
-    <link href="{{URL::asset('build//css/fullcalendar/fullcalendar/dist/fullcalendar.print.css')}}" el="stylesheet" media="print">
+  
     <link href="{{URL::asset('build/css/custom.min.css')}}" rel="stylesheet">
     
     <!-- Custom Theme Style -->
@@ -55,9 +53,14 @@
     <link href="{{URL::asset('vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css')}}" rel="stylesheet">
 
     <link href="{{URL::asset('vendors/cropper/dist/cropper.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{URL::asset('datepicker/datepicker3.css') }}"">
+
       
     
-@yield('css')    
+@yield('css') 
+ <script src="{{URL::asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+    {{-- <script src="{{URL::asset('js/jquery-3.2.1.min.js')}}"></script> --}}
+
   </head>
 
   <body class="nav-md">
@@ -106,7 +109,7 @@
                     <ul class="nav child_menu">
                      <li><a href="{{URL::to('/stokdarah')}}">Stok Darah</a></li>
                       <li><a href="{{URL::to('/jadwal_mobilunit')}}">Jadwal Mobil Unit</a></li>
-                      <li><a href="{{URL::to('/tambah_jadwal')}}">Tambah Jadwal Mobil Unit</a></li>
+                      <li><a href="{{URL::to('/jadwal_mobilunit/create')}}">Tambah Jadwal Mobil Unit</a></li>
                     </ul>
                   <li><a href="{{URL::asset('inbox')}}"><i class=" fa fa-info"></i> Tentang </a>
                     <ul class="nav child_menu">
@@ -232,44 +235,12 @@
     </div>
 
     <!-- jQuery -->
-    <script src="{{URL::asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+   
     <!-- Bootstrap -->
     <script src="{{URL::asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <!-- FastClick -->
-    <script src="{{URL::asset('vendors/fastclick/lib/fastclick.js')}}"></script>
-    <!-- NProgress -->
-    <script src="{{URL::asset('vendors/nprogress/nprogress.js')}}"></script>
-    <!-- Chart.js -->
-    <script src="{{URL::asset('vendors/Chart.js/dist/Chart.min.js')}}"></script>
-    <!-- gauge.js -->
-    <script src="{{URL::asset('vendors/gauge.js/dist/gauge.min.js')}}"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="{{URL::asset('vendors/bootstrap-progressbar/bootstrap-progressbar.min.js')}}"></script>
-    <!-- iCheck -->
-    <script src="{{URL::asset('vendors/iCheck/icheck.min.js')}}"></script>
-    <!-- Skycons -->
-    <script src="{{URL::asset('vendors/skycons/skycons.js')}}"></script>
-    <!-- Flot -->
-    <script src="{{URL::asset('vendors/Flot/jquery.flot.js')}}"></script>
-    <script src="{{URL::asset('vendors/Flot/jquery.flot.pie.js')}}"></script>
-    <script src="{{URL::asset('vendors/Flot/jquery.flot.time.js')}}"></script>
-    <script src="{{URL::asset('vendors/Flot/jquery.flot.stack.js')}}"></script>
-    <script src="{{URL::asset('vendors/Flot/jquery.flot.resize.js')}}"></script>
-    <!-- Flot plugins -->
-    <script src="{{URL::asset('vendors/flot.orderbars/js/jquery.flot.orderBars.js')}}"></script>
-    <script src="{{URL::asset('vendors/flot-spline/js/jquery.flot.spline.min.js')}}"></script>
-    <script src="{{URL::asset('vendors/flot.curvedlines/curvedLines.js')}}"></script>
-    <!-- DateJS -->
-    <script src="{{URL::asset('vendors/DateJS/build/date.js')}}"></script>
-    <!-- JQVMap -->
-    <script src="{{URL::asset('vendors/jqvmap/dist/jquery.vmap.js')}}"></script>
-    <script src="{{URL::asset('vendors/jqvmap/dist/maps/jquery.vmap.world.js')}}"></script>
-    <script src="{{URL::asset('vendors/jqvmap/examples/js/jquery.vmap.sampledata.js')}}"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="{{URL::asset('vendors/moment/min/moment.min.js')}}"></script>
-    <script src="{{URL::asset('vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+    
 
-    <script src="{{URL::asset('vendors/fullcalendar/dist/fullcalendar.min.js')}}">  </script>
 
 
     <!-- Bootstrap -->
@@ -284,7 +255,8 @@
     <script src="{{URL::asset('build/js/custom.min.js')}}"></script>
 
     <!-- bootstrap-datetimepicker -->    
-    <script src="{{URL::asset('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+ 
+ 
     <!-- Ion.RangeSlider -->
     <script src="{{URL::asset('vendors/ion.rangeSlider/js/ion.rangeSlider.min.js')}}"></script>
     <!-- Bootstrap Colorpicker -->
@@ -313,6 +285,7 @@
     <script src="{{URL::asset('vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js')}}"></script>
     <!-- starrr -->
     <script src="{{URL::asset('vendors/starrr/dist/starrr.js')}}"></script>
+        {{-- <script src="{{ URL::asset('datepicker/bootstrap-datepicker.js') }}"></script>   --}}
     <!-- Custom Theme Scripts -->
     
     @yield('script')

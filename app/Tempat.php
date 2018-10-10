@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Eloquent;
 class Tempat extends Model
 {
-		protected $table = 'Tempat';
+		protected $table = 'tempat';
 
 		public function Jadwal()
 		{

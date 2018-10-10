@@ -16,9 +16,9 @@
 // Route::post('/login', 'LoginController@postlogin');
 // Route::view('/login', 'login');
 // Route::view('/logout', 'LoginController@logout');
-// Route::get('/login',function(){
-    // return view('login');
-// });     
+Route::get('/',function(){
+    return view('login');
+});     
 Route::get('/cek_login','LoginController@cek_login')->name('konten');
 Route::post('/cek_login','LoginController@cek_login');
 // Route::get('/konten','LoginController@logout');
@@ -56,32 +56,13 @@ Route::get('/edit_mobilunit',function(){
     return view('edit_mobilunit');
 });
 
-// Route::get('/tambah_jadwal',function(){
-//     return view('tambah_jadwal');
-// });
-Route::post('/tambah_jadwal', 'JadwalUnitController@store');
-Route::get('/tambah_jadwal', 'JadwalUnitController@create');
+
+
 Route::resource('/jadwal_mobilunit', 'JadwalUnitController');
-// Route::get('/jadwal_mobilunit', 'JadwalUnitController@update');
-// Route::get('/jadwal_mobilunit', 'JadwalUnitController@edit');
-// Route::resource('/jadwal_mobilunit', 'JadwalUnitController');
-// Route::get('/jadwal_mobilunit', 'JadwalUnitController@update');
-// Route::get('/jadwal_mobilunit', 'JadwalUnitController@edit');
-// Route::resource('/tambah_jadwal', 'Controller');
-// Route::get('/jadwal_mobilunit', 'JadwalUnitController@edit');
-// Route::get('/jadwal_mobilunit', 'JadwalUnitController@show');
-// Route::get('/jadwal_mobilunit', 'JadwalUnitController@update');
-// Route::get('/edit_mobilunit', 'JadwalUnitController');
-// Route::get('/edit_mobilunit', 'JadwalUnitController@update');
-// Route::get('/edit_mobilunit', 'JadwalUnitController@edit');
-// Route::get('/jadwal_mobilunit', 'JadwalUnitController@index');
-// Route::resource('/edit_mobilunit', 'JadwalUnitController');
-// Route::post('/jadwal_mobilunit', 'JadwalUnitController');
+
 
 // 
-Route::get('/', function () {
-    return view('login');
-});
+
 
 //Route::resource('/jadwal','JadwalUnitController');
 // Route::resource('/konten','KontenController'); 

@@ -28,7 +28,7 @@
                     </div>
                   <div class="x_content">
 
-                    <form class="form-horizontal form-label-left" novalidate>
+                    
 
                       <span class="section">Personal Info</span>
 
@@ -50,8 +50,9 @@
                    
             
                 {!! Form::model($jadwal, ['method'=>"PATCH",'route'=>['jadwal_mobilunit.update',$jadwal->id]]) !!}
-                {{-- {!! Form::open(["mehtod"=>"POST","route"=>"jadwal.store",'class'=>'form form-horizontal']) !!} --}}
-
+                
+                      
+                      {!! Form::token() !!}
                         <div class="row mg-t-20">
                               {!! Form::label("tanggal", "Tanggal", ['class'=>'col-sm-2  form-control-label']) !!}
                               <div class="col-sm-8 mg-t-10 mg-sm-t-0">
@@ -83,11 +84,48 @@
                         <div class="row mg-t-20">
                               {!! Form::label("nm_kdd", "Nama KDD", ['class'=>'col-sm-2  form-control-label']) !!}
                               <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                  {!! Form::text('nm_kdd', $jadwal->nm_kdd, ['class'=>'form-control','placeholder'=>'Nama KDD']) !!}
+                                 
+
+                                  <select name="nm_kdd" id="id-kdd" class="form-control">
+                                    <option value="">--Pilih KDD --</option>
+                                    @foreach ($kdd as $k)
+                                      @if($k->id_kdd == $jadwal->id_kdd)
+                                          <option value="{{$k->id_kdd}}" selected>{{ $k->nm_kdd }}</option>
+                                      @else
+                                        <option value="{{$k->id_kdd}}">{{ $k->nm_kdd }}</option>
+                                      @endif
+                                    @endforeach
+                                  </select>
                                   
                                    @if ($errors->has('nm_kdd'))
                                         <span class="help-block">
                                             <strong class="error">{{ $errors->first('nm_kdd') }}</strong>
+                                        </span>
+                                    @endif
+
+                              </div>
+                        </div>
+                          </br>
+
+                         <div class="row mg-t-20">
+                              {!! Form::label("nm_tempat", "Nama Tempat", ['class'=>'col-sm-2  form-control-label']) !!}
+                              <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                                 
+
+                                  <select name="nm_tempat" id="id-tempat" class="form-control">
+                                    <option value="">--Pilih Tempat --</option>
+                                    @foreach ($tempat as $t)
+                                      @if($t->id_tempat == $jadwal->id_tempat)
+                                          <option value="{{$k->id_kdd}}" selected>{{ $k->nm_kdd }}</option>
+                                      @else
+                                        <option value="{{$t->id_tempat}}">{{ $k->nm_tempat }}</option>
+                                      @endif
+                                    @endforeach
+                                  </select>
+                                  
+                                   @if ($errors->has('nm_kdd'))
+                                        <span class="help-block">
+                                            <strong class="error">{{ $errors->first('nm_tempat') }}</strong>
                                         </span>
                                     @endif
 
@@ -110,24 +148,7 @@
                               </div>
                         </div>
                         </br>
-                        <div class="row mg-t-20">
-                              {!! Form::label("nm_tempat", "Tempat", ['class'=>'col-sm-2  form-control-label']) !!}
-                              <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                {{-- <select name="jadwal_mobilunit"> --}}
-                                  {{-- @foreach($jadwal as $jd) --}}
-                                  {{-- <option value="{{"jd->id"}}">{{$jd->jadwal_mobil_unit}}</option> --}}
-                                  {{-- @endforeach --}}
-                                  {!! Form::text('nm_tempat', $jadwal->nm_tempat, ['class'=>'form-control','placeholder'=>'Tempat']) !!}
-                                  
-                                   @if ($errors->has('nm_tempat'))
-                                        <span class="help-block">
-                                            <strong class="error">{{ $errors->first('nm_tempat') }}</strong>
-                                        </span>
-                                    @endif
-
-                              </div>
-                        </div>
-                           </br>
+                        
                         <div class="row mg-t-20">
                               {!! Form::label("target", "Target", ['class'=>'col-sm-2  form-control-label']) !!}
                               <div class="col-sm-8 mg-t-10 mg-sm-t-0">
